@@ -44,7 +44,7 @@ export default function Home() {
             className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-light tracking-tight leading-[0.95] mb-6 sm:mb-8"
           >
             <span className="block">Welcome</span>
-            <span className="block text-white/60">Bienvenue</span>
+            <span className="block text-white/50">Bienvenue</span>
           </motion.h1>
 
           {/* Subtitle */}

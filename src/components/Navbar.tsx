@@ -30,37 +30,41 @@ export default function Navbar() {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? "bg-black/40 backdrop-blur-xl border-b border-white/5"
+            ? "bg-black/60 backdrop-blur-xl border-b border-white/10"
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 sm:h-20">
-            {/* Logo - Abstract symbol for anonymity */}
+        <div className="w-full">
+          <div className="flex items-center justify-between h-16 md:h-20 px-6">
+            {/* Logo - Minimal abstract mark */}
             <motion.a
               href="/"
-              className="relative group flex items-center gap-2"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              className="relative group flex items-center"
+              style={{ marginLeft: "5vw" }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <div className="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center">
-                <div className="w-2 h-2 rounded-full bg-white/80" />
+              <div className="w-9 h-9 rounded-full border border-white/40 flex items-center justify-center transition-all duration-300 group-hover:border-white/70">
+                <div className="w-2.5 h-2.5 rounded-full bg-white/90 transition-all duration-300 group-hover:bg-white" />
               </div>
             </motion.a>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-12">
+            {/* Desktop Navigation - Right aligned */}
+            <div
+              className="hidden md:flex items-center gap-10"
+              style={{ marginRight: "5vw" }}
+            >
               {navItems.map((item, index) => (
                 <motion.a
                   key={item.name}
                   href={item.href}
-                  initial={{ opacity: 0, y: -20 }}
+                  initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 * (index + 1) }}
-                  className="relative group text-sm tracking-wide text-white/70 hover:text-white transition-colors duration-300"
+                  transition={{ delay: 0.1 * (index + 1), duration: 0.4 }}
+                  className="relative group text-[13px] font-medium tracking-widest uppercase text-white/60 hover:text-white transition-colors duration-300"
                 >
                   {item.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-white/60 transition-all duration-300 group-hover:w-full" />
+                  <span className="absolute -bottom-1.5 left-0 w-0 h-[1px] bg-white/80 transition-all duration-300 ease-out group-hover:w-full" />
                 </motion.a>
               ))}
             </div>
@@ -68,8 +72,10 @@ export default function Navbar() {
             {/* Mobile Menu Button */}
             <motion.button
               className="md:hidden relative w-10 h-10 flex items-center justify-center"
+              style={{ marginRight: '5vw' }}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              whileTap={{ scale: 0.95 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label="Toggle menu"
             >
               <div className="flex flex-col gap-1.5 w-5">
                 <motion.span
@@ -77,18 +83,21 @@ export default function Navbar() {
                     rotate: isMobileMenuOpen ? 45 : 0,
                     y: isMobileMenuOpen ? 6 : 0,
                   }}
-                  className="w-full h-px bg-white origin-center"
+                  transition={{ duration: 0.2 }}
+                  className="w-full h-[1.5px] bg-white origin-center"
                 />
                 <motion.span
                   animate={{ opacity: isMobileMenuOpen ? 0 : 1 }}
-                  className="w-full h-px bg-white"
+                  transition={{ duration: 0.2 }}
+                  className="w-full h-[1.5px] bg-white"
                 />
                 <motion.span
                   animate={{
                     rotate: isMobileMenuOpen ? -45 : 0,
                     y: isMobileMenuOpen ? -6 : 0,
                   }}
-                  className="w-full h-px bg-white origin-center"
+                  transition={{ duration: 0.2 }}
+                  className="w-full h-[1.5px] bg-white origin-center"
                 />
               </div>
             </motion.button>
@@ -103,20 +112,20 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-black/95 backdrop-blur-xl md:hidden"
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-40 bg-[#030712]/98 backdrop-blur-2xl md:hidden"
           >
-            <div className="flex flex-col items-center justify-center h-full gap-8">
+            <div className="flex flex-col items-center justify-center h-full gap-10">
               {navItems.map((item, index) => (
                 <motion.a
                   key={item.name}
                   href={item.href}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 20 }}
-                  transition={{ delay: 0.1 * index }}
+                  transition={{ delay: 0.05 * index, duration: 0.3 }}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-2xl text-white/80 hover:text-white transition-colors"
+                  className="text-3xl font-light tracking-wide text-white/70 hover:text-white transition-colors duration-300"
                 >
                   {item.name}
                 </motion.a>
