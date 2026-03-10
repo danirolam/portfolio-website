@@ -1,7 +1,7 @@
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
-import "../styles/globals.css";
+import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -14,8 +14,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dev",
-  description: "Creative Development",
+  title: "Portfolio",
+  description: "Engineering & Development Portfolio",
   robots: {
     index: false,
     follow: false,
@@ -25,6 +25,9 @@ export const metadata: Metadata = {
       follow: false,
       noimageindex: true,
     },
+  },
+  other: {
+    "X-Robots-Tag": "noindex, nofollow, noarchive, nosnippet",
   },
 };
 

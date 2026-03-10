@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from "framer-motion";
 const navItems = [
   { name: "Work", href: "#work" },
   { name: "About", href: "#about" },
-  { name: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
@@ -72,7 +71,7 @@ export default function Navbar() {
             {/* Mobile Menu Button */}
             <motion.button
               className="md:hidden relative w-10 h-10 flex items-center justify-center"
-              style={{ marginRight: '5vw' }}
+              style={{ marginRight: "5vw" }}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               whileTap={{ scale: 0.9 }}
               aria-label="Toggle menu"

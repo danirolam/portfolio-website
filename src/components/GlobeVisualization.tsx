@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import dynamic from "next/dynamic";
 
-// Dynamically import Globe to avoid SSR issues
 const Globe = dynamic(() => import("react-globe.gl"), {
   ssr: false,
   loading: () => (
@@ -98,12 +97,8 @@ export default function GlobeVisualization() {
   const globeRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  const [isClient, setIsClient] = useState(false);
 
-  // Update dimensions on resize
   useEffect(() => {
-    setIsClient(true);
-
     const updateDimensions = () => {
       if (containerRef.current) {
         setDimensions({
@@ -118,24 +113,9 @@ export default function GlobeVisualization() {
     return () => window.removeEventListener("resize", updateDimensions);
   }, []);
 
-  // Auto-rotate and set initial position
-  useEffect(() => {
-    if (globeRef.current) {
-      // Set initial camera position
-      globeRef.current.pointOfView({ lat: 20, lng: 0, altitude: 2.5 }, 0);
-
-      // Enable auto-rotation
-      const controls = globeRef.current.controls();
-      if (controls) {
-        controls.autoRotate = true;
-        controls.autoRotateSpeed = 0.5;
-        controls.enableZoom = false;
-      }
-    }
-  }, [isClient]);
-
   const handleGlobeReady = useCallback(() => {
     if (globeRef.current) {
+      globeRef.current.pointOfView({ lat: 20, lng: 0, altitude: 2.5 }, 0);
       const controls = globeRef.current.controls();
       if (controls) {
         controls.autoRotate = true;
@@ -144,17 +124,6 @@ export default function GlobeVisualization() {
       }
     }
   }, []);
-
-  if (!isClient) {
-    return (
-      <div
-        ref={containerRef}
-        className="w-full h-full flex items-center justify-center"
-      >
-        <div className="w-16 h-16 border-2 border-white/20 border-t-white/80 rounded-full animate-spin" />
-      </div>
-    );
-  }
 
   return (
     <div ref={containerRef} className="w-full h-full">

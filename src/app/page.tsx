@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
+import ProjectsSection from "@/components/ProjectsSection";
+import AboutSection from "@/components/AboutSection";
 
 // Dynamically import Globe to avoid SSR issues
 const GlobeVisualization = dynamic(
@@ -19,14 +21,14 @@ const GlobeVisualization = dynamic(
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen min-h-[100dvh] bg-[#030712] text-white overflow-hidden">
+    <main className="relative min-h-[100dvh] bg-[#030712] text-white overflow-x-hidden">
       {/* Background gradient */}
       <div className="fixed inset-0 bg-gradient-to-b from-transparent via-[#030712] to-[#030712]" />
 
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative h-screen h-[100dvh] flex items-center justify-center">
+      <section className="relative h-[100dvh] flex items-center justify-center">
         {/* Globe Container - positioned for visual impact */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-full h-full">
@@ -54,7 +56,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-base sm:text-lg md:text-xl text-white/40 max-w-xl mx-auto font-light leading-relaxed px-2"
           >
-            | McGill | Electrical Engineering | 
+            | McGill | Electrical Engineering |
           </motion.p>
 
           {/* CTA */}
@@ -101,6 +103,21 @@ export default function Home() {
           />
         </motion.div>
       </section>
+
+      <ProjectsSection />
+      <AboutSection />
+
+      {/* Footer */}
+      <footer className="relative py-12 border-t border-white/[0.04]">
+        <div className="max-w-6xl mx-auto px-6 sm:px-10 md:px-20 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <span className="text-[10px] tracking-[0.3em] uppercase text-white/15">
+            drolam.ca
+          </span>
+          <span className="text-[10px] text-white/10">
+            &copy; {new Date().getFullYear()}
+          </span>
+        </div>
+      </footer>
     </main>
   );
 }
